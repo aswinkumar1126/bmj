@@ -1,56 +1,54 @@
-
-import StackNavigator from "./src/navigation/StackNavigator"
+import StackNavigator from "./src/navigation/StackNavigator";
 import { useEffect } from "react";
 import * as Notifications from 'expo-notifications';
 import * as Device from 'expo-device';
 import { Platform } from 'react-native';
 
 export default function App() {
-  {/*---------------push Notifications------------------------*/ }
   useEffect(() => {
-    registerForPushNotificationsAsync().then(token => {
+    const prepareNotifications = async () => {
+      const token = await registerForPushNotificationsAsync();
       if (token) {
         console.log("✅ Token registered:", token);
-        // Optionally send token to backend here
+        // Send token to backend here if needed
       }
-    });
+    };
+    prepareNotifications();
   }, []);
 
-  async function registerForPushNotificationsAsync() {
-    let token;
-    if (Device.isDevice) {
-      const { status: existingStatus } = await Notifications.getPermissionsAsync();
-      let finalStatus = existingStatus;
-      if (existingStatus !== 'granted') {
-        const { status } = await Notifications.requestPermissionsAsync();
-        finalStatus = status;
-      }
-      if (finalStatus !== 'granted') {
-        alert('Failed to get push token!');
-        return;
-      }
-      token = (await Notifications.getExpoPushTokenAsync()).data;
-      console.log('Expo Push Token:', token);
-    } else {
-      alert('Must use physical device for Push Notifications');
+  return <StackNavigator />;
+}
+
+async function registerForPushNotificationsAsync() {
+  let token;
+  if (Device.isDevice) {
+    const { status: existingStatus } = await Notifications.getPermissionsAsync();
+    let finalStatus = existingStatus;
+
+    if (existingStatus !== 'granted') {
+      const { status } = await Notifications.requestPermissionsAsync();
+      finalStatus = status;
     }
 
-    if (Platform.OS === 'android') {
-      Notifications.setNotificationChannelAsync('default', {
-        name: 'default',
-        importance: Notifications.AndroidImportance.MAX,
-        vibrationPattern: [0, 250, 250, 250],
-        lightColor: '#FF231F7C',
-      });
+    if (finalStatus !== 'granted') {
+      alert('Failed to get push token!');
+      return;
     }
 
-    return token;
+    token = (await Notifications.getExpoPushTokenAsync()).data;
+    console.log('Expo Push Token:', token);
+  } else {
+    alert('Must use physical device for Push Notifications');
   }
 
-  {/* ------------------------Ended Push Notifications-------------------------- */ }
+  if (Platform.OS === 'android') {
+    await Notifications.setNotificationChannelAsync('default', {
+      name: 'default',
+      importance: Notifications.AndroidImportance.MAX,
+      vibrationPattern: [0, 250, 250, 250],
+      lightColor: '#FF231F7C',
+    });
+  }
 
-
-
-
-  return <StackNavigator />;
-};
+  return token;
+}
