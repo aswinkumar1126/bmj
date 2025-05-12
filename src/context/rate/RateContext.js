@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-
+import { baseUrlApi } from '../../baseUrl/BaseUrl';
 
 export const RateContext = createContext();
 
@@ -15,7 +15,7 @@ export const RateProvider = ({ children }) => {
     const fetchRate = async () => {
         setLoading(true);
         try {
-            const response = await fetch('http://192.168.0.106:8080/api/v1/todayrate');  // Use the URL from .env
+            const response = await fetch(`${baseUrlApi}/todayrate`);  // Use the URL from .env
             const data = await response.json();
             setGoldRate(data.GOLDRATE || []);
             setSilverRate(data.SILVERRATE || []);

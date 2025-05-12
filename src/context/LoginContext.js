@@ -7,7 +7,7 @@ import {
 } from "react-native";
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { baseUrlApi } from "../baseUrl/BaseUrl";
 
 
 export const LoginContext = createContext(); //creates the useContext for Login 
@@ -29,7 +29,7 @@ export const LoginProvider = ({ children }) => {
         setIsLoading(true);
 
         try {
-            const response = await fetch("http://192.168.0.115:8080/api/v1/user/login", {
+            const response = await fetch(`${baseUrlApi}/api/v1/user/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

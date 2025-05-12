@@ -13,6 +13,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import CreateMpinStyle from '../../styles/CreateMpinStyle'; // You can reuse the same styles
 import { COLORS } from '../../utils/style';
+import { baseMpinUrl } from '../../baseUrl/BaseUrl';
 const MpinVerify = () => {
     const [mpin, setMpin] = useState('');
 
@@ -31,7 +32,7 @@ const MpinVerify = () => {
         try {
             setLoading(true);
 
-            const response = await fetch(`192.168.0.115:8080/api/mpin/verify?enteredMpin=${mpin}`, {
+            const response = await fetch(`${baseMpinUrl}/verify?enteredMpin=${mpin}`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${await AsyncStorage.getItem('token')}`

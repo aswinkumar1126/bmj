@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';         // 👤, �
 import FontAwesome from 'react-native-vector-icons/FontAwesome';    // 👍
 import { AntDesign } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { baseUrlApi } from '../../baseUrl/BaseUrl';
 import SignupStyles from "../../styles/SignupStyles";
 
 
@@ -33,7 +33,7 @@ export default function SignupScreen() {
         }
 
         try {
-            const response = await fetch('http://192.168.0.115:8080/api/v1/user/register', {
+            const response = await fetch(`${baseUrlApi}/api/v1/user/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

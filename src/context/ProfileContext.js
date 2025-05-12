@@ -3,7 +3,7 @@ import { createContext } from "react";
 import React, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { baseUrlApi } from '../baseUrl/BaseUrl';
 import {
     View,
     Alert,
@@ -41,7 +41,7 @@ export const ProfileProvider = ({ children }) => {
                 return;
             }
 
-            const response = await fetch('http://192.168.0.106:8080/api/v1/user/profile', {
+            const response = await fetch(`${baseUrlApi}/user/profile`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

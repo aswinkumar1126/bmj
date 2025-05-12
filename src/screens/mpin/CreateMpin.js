@@ -12,7 +12,7 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import CreateMpinStyle from '../../styles/CreateMpinStyle'; // Make sure path is correct
-
+import { baseMpinUrl } from '../../baseUrl/BaseUrl';
 const CreateMpin = () => {
     const [mpin, setMpin] = useState('');
     const [loading, setLoading] = useState(false);
@@ -29,7 +29,7 @@ const CreateMpin = () => {
             setLoading(true);
             const token = await AsyncStorage.getItem('token');
             
-            const response = await fetch('http://192.168.0.101:8080/api/mpin/create', {
+            const response = await fetch(`${baseMpinUrl}/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',

@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { Alert } from 'react-native';
 import defaultImage from '../../assets/profile/loginimgbg.png'; // Static asset import
-
+import { baseUrlApi } from '../../baseUrl/BaseUrl';
 export const GlobalProductContext = createContext();
 
 export const GlobalProductProvider = ({ children }) => {
@@ -11,7 +11,7 @@ export const GlobalProductProvider = ({ children }) => {
     const fetchProducts = async () => {
         setLoading(true);
         try {
-            const response = await fetch("http://192.168.0.100:8080/api/v1/getAllDetails");
+            const response = await fetch(`${baseUrlApi}/getAllDetails`);
             if (!response.ok) {
                 throw new Error(`❌ Network error: ${response.status}`);
             }
