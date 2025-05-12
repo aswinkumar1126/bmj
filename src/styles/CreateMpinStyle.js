@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { COLORS, SPACING, BORDER_RADIUS, TYPOGRAPHY, COMMON_STYLES, SHADOWS } from '../utils/style';
-import { verticalScale, wp } from '../utils/normalize';
+import { verticalScale, wp ,hp} from '../utils/normalize';
 
 const CreateMpinStyles = StyleSheet.create({
     container: {

@@ -4,7 +4,7 @@ import * as Notifications from 'expo-notifications';
 import * as Device from 'expo-device';
 import { Platform } from 'react-native';
 
-export default function App() {
+ function App() {
   useEffect(() => {
     const prepareNotifications = async () => {
       const token = await registerForPushNotificationsAsync();
@@ -52,3 +52,5 @@ async function registerForPushNotificationsAsync() {
 
   return token;
 }
+
+export default App;

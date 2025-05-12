@@ -7,14 +7,18 @@ import {
     SafeAreaView,
     TouchableOpacity,
     Alert,
+    Animated,
+    StyleSheet
 } from 'react-native';
 import { GlobalProductContext } from '../../context/product/GlobalProductContext';
-import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 import AllProductStyle from '../../styles/AllProductStyle';
+import { SPACING, BORDER_RADIUS } from '../../utils/style';
+import { hp } from '../../utils/normalize';
 
 const AllProduct = ({ navigation, route }) => {
     const { products, loading } = useContext(GlobalProductContext);
-    const styles = AllProductStyle;
+    const styles = { ...AllProductStyle, ...shimmerStyles };
+    const shimmerAnim = new Animated.Value(0);
 
     const searchQuery = route.params?.searchQuery || '';
 
@@ -32,17 +36,52 @@ const AllProduct = ({ navigation, route }) => {
         }
     }, [loading, filteredProducts]);
 
-    const renderSkeleton = () => (
-        <SkeletonPlaceholder borderRadius={10}>
-            <View style={styles.grid}>
-                {Array.from({ length: 6 }).map((_, i) => (
-                    <View key={i} style={styles.card}>
-                        <View style={styles.imageSkeleton} />
-                        <View style={styles.textSkeleton} />
-                    </View>
-                ))}
+    useEffect(() => {
+        Animated.loop(
+            Animated.timing(shimmerAnim, {
+                toValue: 1,
+                duration: 1000,
+                useNativeDriver: true,
+            })
+        ).start();
+    }, []);
+
+    const renderShimmerItem = () => {
+        const translateX = shimmerAnim.interpolate({
+            inputRange: [0, 1],
+            outputRange: [-150, 150],
+        });
+
+        return (
+            <View style={styles.card}>
+                <View style={styles.shimmerImageContainer}>
+                    <Animated.View
+                        style={[
+                            styles.shimmerOverlay,
+                            { transform: [{ translateX }] }
+                        ]}
+                    />
+                </View>
+                <View style={styles.shimmerTextContainer}>
+                    <Animated.View
+                        style={[
+                            styles.shimmerOverlay,
+                            { transform: [{ translateX }], width: '80%' }
+                        ]}
+                    />
+                </View>
             </View>
-        </SkeletonPlaceholder>
+        );
+    };
+
+    const renderLoading = () => (
+        <View style={styles.grid}>
+            {Array.from({ length: 6 }).map((_, index) => (
+                <View key={`shimmer-${index}`}>
+                    {renderShimmerItem()}
+                </View>
+            ))}
+        </View>
     );
 
     const renderItem = ({ item }) => (
@@ -66,7 +105,7 @@ const AllProduct = ({ navigation, route }) => {
                 {searchQuery ? `Results for "${searchQuery}"` : 'All Products'}
             </Text>
             {loading ? (
-                renderSkeleton()
+                renderLoading()
             ) : (
                 <FlatList
                     data={filteredProducts}
@@ -84,5 +123,34 @@ const AllProduct = ({ navigation, route }) => {
         </SafeAreaView>
     );
 };
+
+// Shimmer effect styles
+const shimmerStyles = StyleSheet.create({
+    shimmerImageContainer: {
+        width: '100%',
+        height: hp(18),
+        backgroundColor: '#e1e1e1',
+        borderRadius: BORDER_RADIUS.sm,
+        marginBottom: SPACING.sm,
+        overflow: 'hidden',
+        position: 'relative',
+    },
+    shimmerTextContainer: {
+        width: '60%',
+        height: hp(2),
+        backgroundColor: '#e1e1e1',
+        borderRadius: 4,
+        overflow: 'hidden',
+        position: 'relative',
+    },
+    shimmerOverlay: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: '#f5f5f5',
+    },
+});
 
 export default AllProduct;

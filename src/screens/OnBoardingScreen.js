@@ -32,7 +32,7 @@ export default function OnBoardingScreen() {
                     </Text>
 
                 </TouchableOpacity>
-                <Text style={styles.login}>Already have a account? <Text style={{ fontSize: 16, textDecorationLine: 'underline', color: '#481E14' }} onPress={() => navigation.navigate('ProductDetails')} > Log In</Text> </Text>
+                <Text style={styles.login}>Already have a account? <Text style={{ fontSize: 16, textDecorationLine: 'underline', color: '#481E14' }} onPress={() => navigation.navigate('Login')} > Log In</Text> </Text>
             </View>
         </View>
     )

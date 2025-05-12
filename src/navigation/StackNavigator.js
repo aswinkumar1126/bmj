@@ -38,32 +38,6 @@ import { RateProvider } from '../context/rate/RateContext';
 const Stack = createNativeStackNavigator();
 
 const StackNavigator = () => {
-    const [isFirstLaunch, setIsFirstLaunch] = useState(null); // null = checking
-    const [hasToken, setHasToken] = useState(false);
-    const [hasMpin, setHasMpin] = useState(false);
-
-    useEffect(() => {
-        const init = async () => {
-            const launched = await AsyncStorage.getItem('hasLaunched');
-            if (launched === null) {
-                await AsyncStorage.setItem('hasLaunched', 'true');
-                setIsFirstLaunch(true);
-            } else {
-                setIsFirstLaunch(false);
-            }
-
-            const token = await AsyncStorage.getItem('token');
-            setHasToken(!!token);
-
-            const mpin = await AsyncStorage.getItem('mpin');
-            setHasMpin(!!mpin);
-        };
-
-        init();
-    }, []);
-
-    if (isFirstLaunch === null) return null; // optional: show a splash screen
-
     return (
         <NavigationContainer>
             <LoginProvider>
@@ -93,11 +67,11 @@ const StackNavigator = () => {
                                 <Stack.Screen name="AllProduct" component={AllProduct} />
                                 <Stack.Screen name="SearchScreen" component={SearchScreen} />
                                 <Stack.Screen name="Header" component={Header} />
-                                    <Stack.Screen name="RateScreen" component={RateScreen} />
+                                <Stack.Screen name="RateScreen" component={RateScreen} /> 
 
 
                             </Stack.Navigator>
-                                </RateProvider>
+                                </RateProvider> 
                             </GlobalProductProvider>
                     </OtpProvider>
                 </ProfileProvider>

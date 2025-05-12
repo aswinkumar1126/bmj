@@ -11,7 +11,7 @@ const LoginScreen = () => {
     const navigation = useNavigation();
 
     const {
-        usernameOrEmail, setUsernameOrEmail,
+        contactOrEmailOrUsername, setContactOrEmailOrUsername,
         password, setPassword,
         isLoading, height, isWide, handleLogin
     } = useContext(LoginContext);
@@ -29,8 +29,8 @@ const LoginScreen = () => {
                         <Text style={LoginStyles.labelPhone}>Email/Phone:</Text>
                         <TextInput
                             placeholder="📧 Email_or_phone"
-                            value={usernameOrEmail}
-                            onChangeText={setUsernameOrEmail}
+                            value={contactOrEmailOrUsername}
+                            onChangeText={setContactOrEmailOrUsername}
                             style={LoginStyles.input}
                             placeholderTextColor="#999"
                         />
@@ -91,7 +91,7 @@ const LoginScreen = () => {
                         {/* Footer Links */}
                         <View style={LoginStyles.footerLinks}>
                             <Text style={LoginStyles.footerText}>Don’t have an account?</Text>
-                            <TouchableOpacity onPress={() => navigation.navigate("Signin")}>
+                            <TouchableOpacity onPress={() => navigation.navigate("Home")}>
                                 <Text style={LoginStyles.footerSignText}>Sign up</Text>
                             </TouchableOpacity>
                         </View>

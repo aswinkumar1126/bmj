@@ -1,6 +1,4 @@
-import { TextInput, View, StyleSheet, TouchableOpacity, Text, Alert, Image } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import React, { useState, useEffect } from 'react';
+import { TextInput, View, StyleSheet, TouchableOpacity, Text, Alert, Image } from "react-native";;
 import { Dimensions } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 

@@ -31,7 +31,7 @@ const MpinVerify = () => {
         try {
             setLoading(true);
 
-            const response = await fetch(`http://192.168.0.106:8080/api/mpin/verify?enteredMpin=${mpin}`, {
+            const response = await fetch(`192.168.0.115:8080/api/mpin/verify?enteredMpin=${mpin}`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${await AsyncStorage.getItem('token')}`

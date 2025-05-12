@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
-import { wp } from '../utils/normalize';
-import { COLORS, SPACING,  SHADOWS } from '../utils/style';
+import { wp,hp} from '../utils/normalize';
+import { COLORS, SPACING, SHADOWS } from '../utils/style';
 
 const CategoryStyle = StyleSheet.create({
     container: {
@@ -48,11 +48,11 @@ const CategoryStyle = StyleSheet.create({
         marginTop: SPACING.xxxs, // optional small top margin
     },
 
-    skeletonContainer: {
+    Container: {
         flexDirection: 'row',
         paddingHorizontal: SPACING.sm,
     },
-    skeletonCard: {
+    Card: {
         alignItems: 'center',
         marginRight: SPACING.md,
     },

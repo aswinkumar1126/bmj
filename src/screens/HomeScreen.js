@@ -6,18 +6,14 @@ import CategoryScreen from './CategoryScreen';
 import Header from '../component/header/Header';
 import RateScreen from '../component/rate/RateScreen';
 
-export default function HomeScreen({ navigation }) {
+export default function HomeScreen() {
     return (
         <View style={{  flex: 1, marginTop:10}}>
 
             <Header />
-            <RateScreen />
+            <RateScreen />  
             <SliderScreen />
             <CategoryScreen />
-            <Button
-                title="Go to Product Details"
-                onPress={() => navigation.navigate('Profile')}
-            />
             <BottomNavigation currentScreen={"Home"}/>
         </View>
     );

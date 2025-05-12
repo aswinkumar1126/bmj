@@ -16,7 +16,7 @@ import {
     hp,
     fontScale
 } from "../utils/normalize";
-import { COLORS, SHADOWS, SPACING, BORDER_RADIUS } from "../utils/style"
+import { COLORS, SHADOWS, SPACING, BORDER_RADIUS } from "../utils/style";
 
 const SkeletonLoader = () => {
     const shimmerAnim = new Animated.Value(0);
@@ -66,7 +66,7 @@ const SliderScreen = () => {
         try {
             setIsLoading(true);
             setError(null);
-            const response = await fetch("http://192.168.0.106:8080/api/v1/products-with-images");
+            const response = await fetch("http://192.168.0.115:8080/api/v1/products-with-images");
 
             if (!response.ok) throw new Error('Failed to fetch images');
 

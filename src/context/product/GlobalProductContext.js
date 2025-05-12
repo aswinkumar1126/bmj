@@ -11,7 +11,7 @@ export const GlobalProductProvider = ({ children }) => {
     const fetchProducts = async () => {
         setLoading(true);
         try {
-            const response = await fetch("http://192.168.0.106:8080/api/v1/getAllDetails");
+            const response = await fetch("http://192.168.0.100:8080/api/v1/getAllDetails");
             if (!response.ok) {
                 throw new Error(`❌ Network error: ${response.status}`);
             }

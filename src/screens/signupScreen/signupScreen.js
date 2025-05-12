@@ -33,7 +33,7 @@ export default function SignupScreen() {
         }
 
         try {
-            const response = await fetch('http://192.168.0.106:8080/api/v1/user/register', {
+            const response = await fetch('http://192.168.0.115:8080/api/v1/user/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ export default function SignupScreen() {
                 })
             });
 
-            const data = await response.json();
+            const data = await response.text();
 
             if (response.ok) {
                 console.log("Signup success:", data);

@@ -36,13 +36,38 @@ const ProductStyle = StyleSheet.create({
         color: COLORS.primary,
         fontWeight: '500',
     },
-    skeletonCard: {
-        width: '48%', // Ensure skeleton matches card width
+    Card: {
+        width: '48%', // Ensure  matches card width
         height: hp(26),
         borderRadius: BORDER_RADIUS.md,
         backgroundColor: COLORS.gray100,
         marginBottom: SPACING.lg,
     },
+        imageSkeleton: {
+            width: '100%',
+            height: 150, // Match your image height
+            backgroundColor: '#e1e1e1',
+            borderRadius: 8,
+            marginBottom: SPACING.sm,
+            overflow: 'hidden',
+            position: 'relative',
+        },
+        textSkeleton: {
+            width: '60%',
+            height: 16,
+            backgroundColor: '#e1e1e1',
+            borderRadius: 4,
+            overflow: 'hidden',
+            position: 'relative',
+        },
+        shimmerOverlay: {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(255, 255, 255, 0.7)',
+        },
 });
 
 export default ProductStyle;

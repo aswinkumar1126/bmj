@@ -3,7 +3,7 @@ import { View, TouchableOpacity, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import BottomStyles from "../../styles/BottomStyle"; // Separate style file
-import { moderateScale } from "../../utils/normalize";
+import { moderateScale,hp} from "../../utils/normalize";
 
 const BottomNavigation = ({ currentScreen }) => {
     const navigation = useNavigation();

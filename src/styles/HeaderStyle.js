@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { moderateScale, verticalScale } from '../utils/normalize';
+import { moderateScale, verticalScale ,hp} from '../utils/normalize';
 import { COLORS, SPACING, FONTS } from '../utils/style';
 
 const HeaderStyle = StyleSheet.create({

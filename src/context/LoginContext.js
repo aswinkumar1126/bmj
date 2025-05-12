@@ -14,14 +14,14 @@ export const LoginContext = createContext(); //creates the useContext for Login
 
 export const LoginProvider = ({ children }) => {
 
-    const [usernameOrEmail, setUsernameOrEmail] = useState('');
+    const [contactOrEmailOrUsername, setContactOrEmailOrUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const { width, height } = Dimensions.get("window");
     const isWide = width >= 768;
 
     const handleLogin = async (navigation) => {
-        if (!usernameOrEmail || !password) {
+        if (!contactOrEmailOrUsername || !password) {
             Alert.alert("Error", "Please enter both email/phone and password");
             return;
         }
@@ -29,14 +29,14 @@ export const LoginProvider = ({ children }) => {
         setIsLoading(true);
 
         try {
-            const response = await fetch("http://192.168.0.106:8080/api/v1/user/login", {
+            const response = await fetch("http://192.168.0.115:8080/api/v1/user/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     Accept: "application/json",
                 },
                 body: JSON.stringify({
-                    usernameOrEmail,
+                    contactOrEmailOrUsername,
                     password,
                 }),
             });
@@ -61,7 +61,7 @@ export const LoginProvider = ({ children }) => {
     };
     return (
         <LoginContext.Provider value={{
-            usernameOrEmail, setUsernameOrEmail,
+            contactOrEmailOrUsername, setContactOrEmailOrUsername,
             password, setPassword,
             isLoading, setIsLoading,
             width, height, isWide, handleLogin

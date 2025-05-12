@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { moderateScale, moderateVerticalScale } from "../utils/normalize";
+import { moderateScale, moderateVerticalScale , hp } from "../utils/normalize";
 import { COLORS, SPACING, BORDER_RADIUS } from "../utils/style";
 
 const BottomStyles = StyleSheet.create({

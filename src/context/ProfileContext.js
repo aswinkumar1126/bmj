@@ -35,7 +35,7 @@ export const ProfileProvider = ({ children }) => {
     const fetchUser = async () => {
         try {
             const token = await AsyncStorage.getItem('token');
-            console.log(token);
+            //console.log(token);
              if (!token) {
                 Alert.alert('Error', 'No token found. Please log in again.');
                 return;

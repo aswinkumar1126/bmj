@@ -28,8 +28,8 @@ const CreateMpin = () => {
         try {
             setLoading(true);
             const token = await AsyncStorage.getItem('token');
-
-            const response = await fetch('http://192.168.0.106:8080/api/mpin/create', {
+            
+            const response = await fetch('http://192.168.0.101:8080/api/mpin/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -81,7 +81,9 @@ const CreateMpin = () => {
                 ) : (
                     <Text style={styles.buttonText}>Create MPIN</Text>
                 )}
+                
             </TouchableOpacity>
+            <Text onPress={() => navigation.navigate('MpinVerify')}>Forgot MPIN</Text>
         </KeyboardAvoidingView>
     );
 };
